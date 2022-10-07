@@ -11,7 +11,7 @@
 
 float mencari_V0(int jrk,int losss)
 {
-      return sqrt(jrk*GRAVITASI)+losss;
+     return sqrt(jrk*GRAVITASI)+losss; //v0 dicari lagi, setelah jarak dijadiin tipe data int 
 }
 
 float speed_dgn_loss(float h)
@@ -20,18 +20,19 @@ float speed_dgn_loss(float h)
 }
 
 int main() {
-    float a,v0,vtan; // deklarasi
+    float a,v0,vtan,loss; // deklarasi
     int jarak; // deklarasi variable jarak maksimum pelemparan bola
     std::cin >> a;
 
     vtan = speed_dgn_loss(a); //mencari kecepatan tangensial roller
-    loss = a-vtan;
+    loss = a-vtan; // simpan nilai loss
 
     if (a>30){ //mengecek apabila kecepatan tangensial roller lebih dengan 30 m/s
         return 0;
     }
-    jarak = int(v0*v0/10); // hitung jarak. ingat sin(2*45) = 0.5
-    v0 = mencari_V0(jarak,loss);
+    
+    jarak = int(vtan*vtan/GRAVITASI); // hitung jarak. ingat sin(2*45) = 1
+    v0 = mencari_V0(jarak,loss); // cari v0 lagi
 
     //output semua
     std::cout << jarak;
@@ -40,4 +41,3 @@ int main() {
 
     return 0;
 }
-
